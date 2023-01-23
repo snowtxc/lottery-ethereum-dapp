@@ -67,7 +67,7 @@ async function pickAWinner(){
         'success'
       )
     }catch(e){
-      onEnter.value = false;
+      onPickingAWinner.value =false;
     }
 }
 
@@ -97,9 +97,9 @@ async function enter(){
 <template>
   <LoadingPage v-if="loading"></LoadingPage>
 
-  <div class="w-full h-screen bg-gray-100 fixed " v-if="!loading">
-    <div class="flex flex-col justify-center w-full  items-center mt-10">
-      <button class="bg-violet-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2 h-[100px] text-3xl animate-bounce hover:animate-pulse" @click="enter">
+  <div class="w-full  bg-gray-100 absolute " v-if="!loading">
+    <div class="flex flex-col justify-center w-full  items-center mt-10 px-10">
+      <button class="bg-violet-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  md:py-8 text-3xl animate-bounce hover:animate-pulse" @click="enter">
        <span v-if="!onEnter"> Enter to the Lottery (<span class="text-green-500">{{ getPrizePoolEth }} ETH in Cash  </span>)
         prize:  0.01 ETH</span>
         <span v-if="onEnter"> 
@@ -114,7 +114,7 @@ async function enter(){
         <i class="fa-duotone fa-face-tongue-money"></i>
       </button>
 
-      <button v-if="userIsManager && players.length > 0" class="mt-3 bg-red-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded w-1/3 h-[100px] text-3xl  hover:animate-pulse" @click="pickAWinner">
+      <button v-if="userIsManager && players.length > 0" class="rounded-full mt-3 bg-red-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded md:py-5 py-4  text-3xl  hover:animate-pulse" @click="pickAWinner">
           Pick a Winner
           <div role="status" v-if="onPickingAWinner">
             <svg aria-hidden="true" class="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +145,7 @@ async function enter(){
         </div>
       </div>
   
-      <div class="flex-1 px-5">
+      <div class="flex-1 px-5 py-5 md:py-0 ">
         <span class="text-xl font-medium">Players</span>
         <ul class="divide-y divide-gray-200 dark:divide-gray-700 mt-3 overflow-y-scroll max-h-96 px-3" v-if="cantPlayers > 0">
           <li class="pb-3 sm:pb-4" v-for="player in players" :key="player">
